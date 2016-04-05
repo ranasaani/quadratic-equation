@@ -1,17 +1,5 @@
 <?php
- /***************************************************
-//* Quadratic Equation Solver                       *
-//* Version:	  2.0                               *
-//* Release:      2010-10-12                        *
-//* Author:       Intigam Mammadov                  *
-//* Country:      Azerbaijan                        *
-//* Contact:      php.mysql.pr@gmail.com            *
-//* Copyright:    free for non-commercial use .     *
-//* Any suggestion, request or bug, contact me!     *
-//***************************************************/
-/*This class calculates  roots of  quadratic equation with real coefficients*/
-
-class equation2 {
+class Solver {
    public $p=array();
    public $x=array();
    public $dec;
@@ -90,7 +78,7 @@ $dec=$_GET['dec'];//or =4
 }else{
 $a=1; $b=2; $c=1;
 }
-$e=new equation2($a,$b,$c,$dec);
+$e=new Solver($a,$b,$c,$dec);
 $e->p['a'];
 $e->p['b'];
 $e->p['c'];
@@ -112,6 +100,9 @@ $response['type'] = $e->checkD();
 	default:
 		break;
 }
+
+$response['ip'] = $_SERVER['SERVER_ADDR'];
+header('Content-Type: application/json');
 
 print_r(json_encode($response))
 ?>
